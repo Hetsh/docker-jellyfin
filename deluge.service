@@ -1,0 +1,21 @@
+[Unit]
+Description=Deluge container
+After=docker.service
+Requires=docker.service
+
+[Service]
+ExecStartPre=-/bin/docker create \
+			  --rm \
+			  --interactive \
+			  --name deluge \
+			  --publish 3022:3022 \
+			  --publish 3000:3000 \
+			  --mount type=bind,source=/etc/deluge/app.ini,target=/etc/deluge/app.ini \
+			  --mount type=bind,source=/etc/deluge/data,target=/deluge-data \
+			  --mount type=bind,source=/etc/localtime,target=/etc/localtime,readonly \
+			  hetsh/deluge
+ExecStart=/bin/docker start --attach deluge
+ExecStop=/bin/docker stop deluge
+
+[Install]
+WantedBy=multi-user.target
