@@ -9,10 +9,10 @@ ExecStartPre=-/bin/docker create \
               --interactive \
               --name jellyfin \
               --publish 8096:8096/tcp \
-              --mount type=bind,source=/apps/jellyfin/config,target=/jellyfin/config \
-              --mount type=bind,source=/apps/jellyfin/cache,target=/jellyfin/cache \
-              --mount type=bind,source=/mnt/Filme,target=/jellyfin/media/Filme,readonly \
-              --mount type=bind,source=/mnt/Daten/Musik,target=/jellyfin/media/Musik,readonly \
+              --mount type=bind,source=/apps/jellyfin/config,target=/config \
+              --mount type=bind,source=/apps/jellyfin/cache,target=/cache \
+              --mount type=bind,source=/mnt/Filme,target=/media/Filme,readonly \
+              --mount type=bind,source=/mnt/Daten/Musik,target=/media/Musik,readonly \
               --mount type=bind,source=/etc/localtime,target=/etc/localtime,readonly \
               jellyfin/jellyfin
 ExecStart=/bin/docker start --attach jellyfin
