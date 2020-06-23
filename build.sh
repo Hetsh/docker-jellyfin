@@ -19,7 +19,7 @@ if ! docker version &> /dev/null; then
 fi
 
 # Build the image
-APP_NAME="deluge"
+APP_NAME="jellyfin"
 docker build --tag "$APP_NAME" .
 
 if confirm_action "Test image?"; then
@@ -27,7 +27,7 @@ if confirm_action "Test image?"; then
 	docker run \
 	--rm \
 	--interactive \
-	--publish 58846:58846/tcp \
+	--publish 8096:8096/tcp \
 	--mount type=bind,source=/etc/localtime,target=/etc/localtime,readonly \
 	--name "$APP_NAME" \
 	"$APP_NAME"
