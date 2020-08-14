@@ -20,10 +20,11 @@ fi
 
 # Build the image
 APP_NAME="jellyfin"
-docker build --tag "$APP_NAME" .
+APP_TAG="hetsh/$APP_NAME"
+docker build --tag "$APP_TAG" --tag "$APP_TAG:$(git describe --tags --abbrev=0)" .
 
-if confirm_action "Test image?"; then
-	# Start the test
+# Start the test
+if [ "${1-}" = "--test" ]; then
 	docker run \
 	--rm \
 	--tty \
