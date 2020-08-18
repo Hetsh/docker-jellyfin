@@ -28,7 +28,7 @@ update_pkg "apt-transport-https" "HTTPS APT Transport" "false" "$PKG_URL" "(\d+\
 update_pkg "ca-certificates" "CA-Certificates" "false" "$PKG_URL" "\d{8}"
 
 if ! updates_available; then
-	echo "No updates available."
+	#echo "No updates available."
 	exit 0
 fi
 
