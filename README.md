@@ -1,3 +1,5 @@
+**This Project is still work in progress.**
+
 # Jellyfin
 Easy to set up Jellyfin media server.
 
