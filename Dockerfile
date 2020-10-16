@@ -41,7 +41,7 @@ RUN DEBIAN_FRONTEND="noninteractive" && \
     rm *.deb
 
 #      HTTP     HTTPS    SERVICE-DISCOVERY CLIENT-DISCOVERY
-EXPOSE 8096/tcp 8096/tcp 1900/udp          7359/udp
+EXPOSE 8096/tcp 8920/tcp 1900/udp          7359/udp
 
 USER "$APP_USER"
 ENTRYPOINT exec jellyfin \
