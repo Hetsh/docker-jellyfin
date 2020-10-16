@@ -40,7 +40,7 @@ update_pkg "libvorbis0a" "Vorbis libs" "false" "$PKG_URL" "(\d+\.){2}\d+-\d+"
 update_pkg "libvorbisenc2" "VorbisEnc libs" "false" "$PKG_URL" "(\d+\.){2}\d+-\d+"
 update_pkg "libwebp6" "WebP libs" "false" "$PKG_URL" "(\d+\.){2}\d+-\d+"
 update_pkg "libwebpmux3" "WebPMux libs" "false" "$PKG_URL" "(\d+\.){2}\d+-\d+"
-update_pkg "libx264-155" "x264 libs" "false" "$PKG_URL" "\d+:(\d+\.){2}\d+\+git[a-z0-9]+-\d+" =2:0.155.2917+git0a84d98-2
+update_pkg "libx264-155" "x264 libs" "false" "$PKG_URL" "\d+:(\d+\.){2}\d+\+git[a-z0-9]+-\d+"
 update_pkg "libx265-165" "x265 libs" "false" "$PKG_URL" "\d+\.\d+-\d+"
 update_pkg "libzvbi0" "ZVBI libs" "false" "$PKG_URL" "(\d+\.){2}\d+-\d+"
 update_pkg "ocl-icd-libopencl1" "OpenCL libs" "false" "$PKG_URL" "(\d+\.){2}\d+-\d+"
