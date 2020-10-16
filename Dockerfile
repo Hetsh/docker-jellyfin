@@ -32,9 +32,9 @@ ARG APP_UID=1365
 RUN useradd --uid "$APP_UID" --user-group --no-create-home --shell /sbin/nologin "$APP_USER"
 
 # Download app
-ARG FFMPEG_URL="https://repo.jellyfin.org/releases/server/debian/versions/jellyfin-ffmpeg/4.3.1-1/jellyfin-ffmpeg_4.3.1-1-buster_amd64.deb"
-ARG SERVER_URL="https://repo.jellyfin.org/releases/server/debian/versions/stable/server/10.6.4/jellyfin-server_10.6.4-1_amd64.deb"
-ARG WEB_URL="https://repo.jellyfin.org/releases/server/debian/versions/stable/web/10.6.4/jellyfin-web_10.6.4-1_all.deb"
+ARG FFMPEG_URL="https://repo.jellyfin.org/releases/server/debian/ffmpeg/jellyfin-ffmpeg_4.3.1-1-buster_amd64.deb"
+ARG SERVER_URL="https://repo.jellyfin.org/releases/server/debian/stable/server/jellyfin-server_10.6.4-1_amd64.deb"
+ARG WEB_URL="https://repo.jellyfin.org/releases/server/debian/stable/web/jellyfin-web_10.6.4-1_all.deb"
 ADD "$FFMPEG_URL" "$SERVER_URL" "$WEB_URL" ./
 RUN DEBIAN_FRONTEND="noninteractive" && \
     dpkg --install *.deb && \
