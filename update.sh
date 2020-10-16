@@ -46,44 +46,10 @@ update_pkg "libzvbi0" "ZVBI libs" "false" "$PKG_URL" "(\d+\.){2}\d+-\d+"
 update_pkg "ocl-icd-libopencl1" "OpenCL libs" "false" "$PKG_URL" "(\d+\.){2}\d+-\d+"
 
 # Jellyfin
-MIRROR="https://repo.jellyfin.org/releases/server/debian/versions"
 IMG_CODENAME="buster"
-CURRENT_FFMPEG_VERSION=$(cat Dockerfile | grep -P --only-matching "(?<=jellyfin-ffmpeg/)(\d+\.){2}\d+-\d+")
-NEW_FFMPEG_VERSION=$(curl --silent --location "$MIRROR/jellyfin-ffmpeg" | grep -P -o "(\d+\.){2}\d+-\d+(?=/</a>)" | sort --version-sort | tail -n 1)
-if [ "$CURRENT_FFMPEG_VERSION" != "$NEW_FFMPEG_VERSION" ]; then
-	prepare_update "" "Jellyfin's FFmpeg" "$CURRENT_FFMPEG_VERSION" "$NEW_FFMPEG_VERSION"
-	update_release
-
-	# Since jellyfin's ffmpeg is not a regular package, the version number needs
-	# to be replaced with the url to download the pkg
-	_UPDATES[-3]="FFMPEG_URL"
-	_UPDATES[-2]="\".*\""
-	_UPDATES[-1]="\"$MIRROR/jellyfin-ffmpeg/$NEW_FFMPEG_VERSION/jellyfin-ffmpeg_$NEW_FFMPEG_VERSION-${IMG_CODENAME}_amd64.deb\""
-fi
-CURRENT_SERVER_VERSION=$(cat Dockerfile | grep -P --only-matching "(?<=server/)(\d+\.){2}\d+")
-NEW_SERVER_VERSION=$(curl --silent --location "$MIRROR/stable/server" | grep -P -o "(\d+\.){2}\d+(?=/</a>)" | sort --version-sort | tail -n 1)
-if [ "$CURRENT_SERVER_VERSION" != "$NEW_SERVER_VERSION" ]; then
-	prepare_update "" "Jellyfin Server" "$CURRENT_SERVER_VERSION" "$NEW_SERVER_VERSION"
-	update_version "$NEW_SERVER_VERSION"
-
-	# Since jellyfin's ffmpeg is not a regular package, the version number needs
-	# to be replaced with the url to download the pkg
-	_UPDATES[-3]="SERVER_URL"
-	_UPDATES[-2]="\".*\""
-	_UPDATES[-1]="\"$MIRROR/stable/server/$NEW_SERVER_VERSION/jellyfin-server_${NEW_SERVER_VERSION}_amd64.deb\""
-fi
-CURRENT_WEB_VERSION=$(cat Dockerfile | grep -P --only-matching "(?<=web/)(\d+\.){2}\d+")
-NEW_WEB_VERSION=$(curl --silent --location "$MIRROR/stable/web" | grep -P -o "(\d+\.){2}\d+(?=/</a>)" | sort --version-sort | tail -n 1)
-if [ "$CURRENT_WEB_VERSION" != "$NEW_WEB_VERSION" ]; then
-	prepare_update "" "Jellyfin Web" "$CURRENT_WEB_VERSION" "$NEW_WEB_VERSION"
-	update_release
-
-	# Since jellyfin's ffmpeg is not a regular package, the version number needs
-	# to be replaced with the url to download the pkg
-	_UPDATES[-3]="WEB_URL"
-	_UPDATES[-2]="\".*\""
-	_UPDATES[-1]="\"$MIRROR/stable/web/$NEW_WEB_VERSION/jellyfin-web_${NEW_WEB_VERSION}_all.deb\""
-fi
+update_url "FFMPEG_URL" "Jellyfin FFmpeg" "false" "https://repo.jellyfin.org/releases/server/debian/ffmpeg" ".*${IMG_CODENAME}_amd64\.deb" "(\d+\.){2}\d+-\d+-$IMG_CODENAME"
+update_url "SERVER_URL" "Jellyfin Server" "true" "https://repo.jellyfin.org/releases/server/debian/stable" ".*_amd64\.deb" "(\d+\.){2}\d+-\d+"
+update_url "WEB_URL" "Jellyfin Web" "false" "https://repo.jellyfin.org/releases/server/debian/stable" ".*_all\.deb" "(\d+\.){2}\d+-\d+"
 
 if ! updates_available; then
 	#echo "No updates available."
