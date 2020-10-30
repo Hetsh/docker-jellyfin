@@ -32,22 +32,33 @@ ARG APP_UID=1365
 RUN useradd --uid "$APP_UID" --user-group --no-create-home --shell /sbin/nologin "$APP_USER"
 
 # Download app
+ARG WEB_DIR="/usr/share/jellyfin/web"
+ARG FFMPEG_DIR="/usr/lib/jellyfin-ffmpeg/ffmpeg"
+ARG DATA_DIR="/var/lib/jellyfin"
+ARG CACHE_DIR="/var/cache/jellyfin"
+ARG CONF_DIR="/etc/jellyfin"
 ARG FFMPEG_URL="https://repo.jellyfin.org/releases/server/debian/ffmpeg/jellyfin-ffmpeg_4.3.1-1-buster_amd64.deb"
 ARG SERVER_URL="https://repo.jellyfin.org/releases/server/debian/stable/server/jellyfin-server_10.6.4-1_amd64.deb"
 ARG WEB_URL="https://repo.jellyfin.org/releases/server/debian/stable/web/jellyfin-web_10.6.4-1_all.deb"
 ADD "$FFMPEG_URL" "$SERVER_URL" "$WEB_URL" ./
 RUN DEBIAN_FRONTEND="noninteractive" && \
     dpkg --install *.deb && \
-    rm *.deb
+    rm *.deb && \
+    chown -R jellyfin:jellyfin "$WEB_DIR" "$FFMPEG_DIR" "$DATA_DIR" "$CACHE_DIR" "$CONF_DIR"
 
 #      HTTP     HTTPS    SERVICE-DISCOVERY CLIENT-DISCOVERY
 EXPOSE 8096/tcp 8920/tcp 1900/udp          7359/udp
 
 USER "$APP_USER"
+ENV WEB_DIR="$WEB_DIR"
+ENV FFMPEG_DIR="$FFMPEG_DIR"
+ENV DATA_DIR="$DATA_DIR"
+ENV CACHE_DIR="$CACHE_DIR"
+ENV CONF_DIR="$CONF_DIR"
 ENTRYPOINT exec jellyfin \
                 --service \
-                --webdir /usr/share/jellyfin/web \
-                --ffmpeg /usr/lib/jellyfin-ffmpeg/ffmpeg \
-                --datadir "/var/lib/jellyfin" \
-                --cachedir "/var/cache/jellyfin" \
-                --configdir "/etc/jellyfin"
+                --webdir "$WEB_DIR" \
+                --ffmpeg "$FFMPEG_DIR" \
+                --datadir "$DATA_DIR" \
+                --cachedir "$CACHE_DIR" \
+                --configdir "$CONF_DIR"
