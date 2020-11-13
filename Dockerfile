@@ -1,6 +1,6 @@
 FROM library/debian:stable-20201012-slim
-RUN DEBIAN_FRONTEND="noninteractive" && \
-    apt-get update && \
+ARG DEBIAN_FRONTEND="noninteractive"
+RUN apt-get update && \
     apt-get install --no-install-recommends --assume-yes \
         ca-certificates=20190110 \
         at=3.1.23-1 \
@@ -41,8 +41,7 @@ ARG FFMPEG_URL="https://repo.jellyfin.org/releases/server/debian/ffmpeg/jellyfin
 ARG SERVER_URL="https://repo.jellyfin.org/releases/server/debian/stable/server/jellyfin-server_10.6.4-1_amd64.deb"
 ARG WEB_URL="https://repo.jellyfin.org/releases/server/debian/stable/web/jellyfin-web_10.6.4-1_all.deb"
 ADD "$FFMPEG_URL" "$SERVER_URL" "$WEB_URL" ./
-RUN DEBIAN_FRONTEND="noninteractive" && \
-    dpkg --install *.deb && \
+RUN dpkg --install *.deb && \
     rm *.deb && \
     chown -R jellyfin:jellyfin "$WEB_DIR" "$FFMPEG_DIR" "$DATA_DIR" "$CACHE_DIR" "$CONF_DIR"
 
@@ -50,11 +49,11 @@ RUN DEBIAN_FRONTEND="noninteractive" && \
 EXPOSE 8096/tcp 8920/tcp 1900/udp          7359/udp
 
 USER "$APP_USER"
-ENV WEB_DIR="$WEB_DIR"
-ENV FFMPEG_DIR="$FFMPEG_DIR"
-ENV DATA_DIR="$DATA_DIR"
-ENV CACHE_DIR="$CACHE_DIR"
-ENV CONF_DIR="$CONF_DIR"
+ENV WEB_DIR="$WEB_DIR" \
+    FFMPEG_DIR="$FFMPEG_DIR" \
+    DATA_DIR="$DATA_DIR" \
+    CACHE_DIR="$CACHE_DIR" \
+    CONF_DIR="$CONF_DIR"
 ENTRYPOINT exec jellyfin \
                 --service \
                 --webdir "$WEB_DIR" \
