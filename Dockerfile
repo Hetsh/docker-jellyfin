@@ -43,7 +43,7 @@ ARG WEB_URL="https://repo.jellyfin.org/releases/server/debian/stable/web/jellyfi
 ADD "$FFMPEG_URL" "$SERVER_URL" "$WEB_URL" ./
 RUN dpkg --install *.deb && \
     rm *.deb && \
-    chown -R jellyfin:jellyfin "$WEB_DIR" "$FFMPEG_DIR" "$DATA_DIR" "$CACHE_DIR" "$CONF_DIR"
+    chown -R "$APP_USER":"$APP_USER" "$WEB_DIR" "$FFMPEG_DIR" "$DATA_DIR" "$CACHE_DIR" "$CONF_DIR"
 
 #      HTTP     HTTPS    SERVICE-DISCOVERY CLIENT-DISCOVERY
 EXPOSE 8096/tcp 8920/tcp 1900/udp          7359/udp
