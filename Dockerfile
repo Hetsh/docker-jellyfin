@@ -18,6 +18,7 @@ RUN apt-get update && \
         libvdpau1=1.1.1-10 \
         libvorbis0a=1.3.6-2 \
         libvorbisenc2=1.3.6-2 \
+        libvpx5=1.7.0-3+deb10u1 \
         libwebp6=0.6.1-2 \
         libwebpmux3=0.6.1-2 \
         libx264-155=2:0.155.2917+git0a84d98-2 \
