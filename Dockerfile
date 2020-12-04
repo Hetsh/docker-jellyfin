@@ -38,7 +38,7 @@ ARG FFMPEG_DIR="/usr/lib/jellyfin-ffmpeg/ffmpeg"
 ARG DATA_DIR="/var/lib/jellyfin"
 ARG CACHE_DIR="/var/cache/jellyfin"
 ARG CONF_DIR="/etc/jellyfin"
-ARG FFMPEG_URL="https://repo.jellyfin.org/releases/server/debian/ffmpeg/jellyfin-ffmpeg_4.3.1-2-buster_amd64.deb"
+ARG FFMPEG_URL="https://repo.jellyfin.org/releases/server/debian/ffmpeg/jellyfin-ffmpeg_4.3.1-3-buster_amd64.deb"
 ARG SERVER_URL="https://repo.jellyfin.org/releases/server/debian/stable/server/jellyfin-server_10.6.4-1_amd64.deb"
 ARG WEB_URL="https://repo.jellyfin.org/releases/server/debian/stable/web/jellyfin-web_10.6.4-1_all.deb"
 ADD "$FFMPEG_URL" "$SERVER_URL" "$WEB_URL" ./
