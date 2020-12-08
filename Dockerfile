@@ -5,8 +5,6 @@ RUN apt-get update && \
         ca-certificates=20190110 \
         at=3.1.23-1 \
         libsqlite3-0=3.27.2-3 \
-        libfontconfig1=2.13.1-2 \
-        libfreetype6=2.9.1-3+deb10u2 \
         libssl1.1=1.1.1d-0+deb10u3 \
         libass9=1:0.14.0-2 \
         libbluray2=1:1.1.0-1 \
@@ -16,10 +14,8 @@ RUN apt-get update && \
         libopus0=1.3-1 \
         libtheora0=1.1.1+dfsg.1-15 \
         libvdpau1=1.1.1-10 \
-        libvorbis0a=1.3.6-2 \
         libvorbisenc2=1.3.6-2 \
         libvpx5=1.7.0-3+deb10u1 \
-        libwebp6=0.6.1-2 \
         libwebpmux3=0.6.1-2 \
         libx264-155=2:0.155.2917+git0a84d98-2 \
         libx265-165=2.9-4 \
