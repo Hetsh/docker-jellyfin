@@ -1,11 +1,11 @@
-FROM library/debian:stable-20201117-slim
+FROM library/debian:stable-20210111-slim
 ARG DEBIAN_FRONTEND="noninteractive"
 RUN apt-get update && \
     apt-get install --no-install-recommends --assume-yes \
         ca-certificates=20190110 \
         at=3.1.23-1 \
         libsqlite3-0=3.27.2-3+deb10u1 \
-        libssl1.1=1.1.1d-0+deb10u3 \
+        libssl1.1=1.1.1d-0+deb10u4 \
         libass9=1:0.14.0-2 \
         libbluray2=1:1.1.0-1 \
         libdrm-intel1=2.4.97-1 \
