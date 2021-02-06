@@ -2,7 +2,7 @@ FROM library/debian:stable-20210111-slim
 ARG DEBIAN_FRONTEND="noninteractive"
 RUN apt-get update && \
     apt-get install --no-install-recommends --assume-yes \
-        ca-certificates=20190110 \
+        ca-certificates=20200601~deb10u2 \
         at=3.1.23-1 \
         libsqlite3-0=3.27.2-3+deb10u1 \
         libssl1.1=1.1.1d-0+deb10u4 \
