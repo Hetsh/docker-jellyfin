@@ -68,7 +68,7 @@ update_image "library/debian" "Debian" "false" "$IMG_CHANNEL-\d+-slim"
 
 # Packages
 PKG_URL="https://packages.debian.org/$IMG_CHANNEL/amd64"
-update_pkg "ca-certificates" "CA-Certificates" "false" "$PKG_URL" "\d{8}"
+update_pkg "ca-certificates" "CA-Certificates" "false" "$PKG_URL" "\d{8}~deb\d+u\d+"
 update_pkg "at" "at" "false" "$PKG_URL" "(\d+\.){2}\d+-\d+"
 update_pkg "libsqlite3-0" "SQLite libs" "false" "$PKG_URL" "(\d+\.){2}\d+-\d+\+deb\d+u\d+"
 update_pkg "libssl1.1" "SSL libs" "false" "$PKG_URL" "(\d+\.){2}\d+d-\d+\+deb\d+u\d+"
