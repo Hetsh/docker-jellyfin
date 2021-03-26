@@ -5,7 +5,7 @@ RUN apt-get update && \
         ca-certificates=20200601~deb10u2 \
         at=3.1.23-1 \
         libsqlite3-0=3.27.2-3+deb10u1 \
-        libssl1.1=1.1.1d-0+deb10u5 \
+        libssl1.1=1.1.1d-0+deb10u6 \
         libass9=1:0.14.0-2 \
         libbluray2=1:1.1.0-1 \
         libdrm-intel1=2.4.97-1 \
