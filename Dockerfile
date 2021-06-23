@@ -16,7 +16,7 @@ RUN apt update && \
         libvdpau1=1.1.1-10 \
         libvorbisenc2=1.3.6-2 \
         libvpx5=1.7.0-3+deb10u1 \
-        libwebpmux3=0.6.1-2 \
+        libwebpmux3=0.6.1-2+deb10u1 \
         libx264-155=2:0.155.2917+git0a84d98-2 \
         libx265-165=2.9-4 \
         libzvbi0=0.2.35-16 \
