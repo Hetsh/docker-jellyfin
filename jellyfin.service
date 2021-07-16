@@ -14,6 +14,7 @@ ExecStartPre=-/bin/docker create \
               --mount type=bind,source=/mnt/Filme,target=/media/Filme,readonly \
               --mount type=bind,source=/mnt/Daten/Musik,target=/media/Musik,readonly \
               --mount type=bind,source=/etc/localtime,target=/etc/localtime,readonly \
+              --stop-timeout 60 \
               hetsh/jellyfin
 ExecStart=/bin/docker start --attach jellyfin
 ExecStop=/bin/docker stop jellyfin
