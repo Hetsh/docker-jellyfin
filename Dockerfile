@@ -41,8 +41,9 @@ RUN apt update && \
     apt install --no-install-recommends --assume-yes wget && \
     wget --quiet "$FFMPEG_URL" "$SERVER_URL" "$WEB_URL" && \
     apt purge --assume-yes --auto-remove wget && \
-    dpkg --install *.deb && \
-    rm *.deb && \
+    rm -r /var/lib/apt/lists /var/cache/apt && \
+    dpkg --install jellyfin-*.deb && \
+    rm jellyfin-*.deb && \
     chown -R "$APP_USER":"$APP_USER" "$WEB_DIR" "$FFMPEG_DIR" "$DATA_DIR" "$CACHE_DIR" "$CONF_DIR"
 
 #      HTTP     HTTPS    SERVICE-DISCOVERY CLIENT-DISCOVERY
