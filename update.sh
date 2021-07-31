@@ -64,7 +64,7 @@ assert_dependency "curl"
 
 # Debian Stable
 IMG_CHANNEL="stable"
-update_image "library/debian" "Debian" "false" "$IMG_CHANNEL-\d+-slim"
+update_image "amd64/debian" "Debian" "false" "$IMG_CHANNEL-\d+-slim"
 
 # Packages
 PKG_URL="https://packages.debian.org/$IMG_CHANNEL/amd64"
