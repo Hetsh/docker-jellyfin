@@ -89,7 +89,7 @@ update_pkg "libzvbi0" "ZVBI libs" "false" "$PKG_URL" "(\d+\.)+\d+-\d+"
 update_pkg "ocl-icd-libopencl1" "OpenCL libs" "false" "$PKG_URL" "(\d+\.)+\d+-\d+"
 
 # Jellyfin
-IMG_CODENAME="buster"
+IMG_CODENAME="bullseye"
 VERSION_REGEX="(\d+\.){2}\d+-\d+"
 update_custom "FFMPEG_URL" "Jellyfin FFmpeg" "false" "https://repo.jellyfin.org/releases/server/debian/ffmpeg" ".*jellyfin-ffmpeg_$VERSION_REGEX-${IMG_CODENAME}_amd64\.deb" "$VERSION_REGEX-$IMG_CODENAME"
 update_custom "SERVER_URL" "Jellyfin Server" "true" "https://repo.jellyfin.org/releases/server/debian/stable" ".*jellyfin-server_${VERSION_REGEX}_amd64\.deb" "$VERSION_REGEX"
