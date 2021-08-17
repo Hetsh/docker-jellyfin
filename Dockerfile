@@ -2,25 +2,25 @@ FROM amd64/debian:stable-20210816-slim
 ARG DEBIAN_FRONTEND="noninteractive"
 RUN apt update && \
     apt install --no-install-recommends --assume-yes \
-        ca-certificates=20200601~deb10u2 \
-        at=3.1.23-1 \
-        libsqlite3-0=3.27.2-3+deb10u1 \
-        libssl1.1=1.1.1d-0+deb10u6 \
-        libass9=1:0.14.0-2 \
-        libbluray2=1:1.1.0-1 \
-        libdrm-intel1=2.4.97-1 \
-        libdrm2=2.4.97-1 \
-        libmp3lame0=3.100-2+b1 \
-        libopus0=1.3-1 \
+        ca-certificates=20210119 \
+        at=3.1.23-1.1 \
+        libsqlite3-0=3.34.1-3 \
+        libssl1.1=1.1.1k-1 \
+        libass9=1:0.15.0-2 \
+        libbluray2=1:1.2.1-4 \
+        libdrm-intel1=2.4.104-1 \
+        libdrm2=2.4.104-1 \
+        libmp3lame0=3.100-3 \
+        libopus0=1.3.1-0.1 \
         libtheora0=1.1.1+dfsg.1-15 \
-        libvdpau1=1.1.1-10 \
-        libvorbisenc2=1.3.6-2 \
-        libvpx5=1.7.0-3+deb10u1 \
-        libwebpmux3=0.6.1-2+deb10u1 \
-        libx264-155=2:0.155.2917+git0a84d98-2 \
-        libx265-165=2.9-4 \
-        libzvbi0=0.2.35-16 \
-        ocl-icd-libopencl1=2.2.12-2 && \
+        libvdpau1=1.4-3 \
+        libvorbisenc2=1.3.7-1 \
+        libvpx6=1.9.0-1 \
+        libwebpmux3=0.6.1-2.1 \
+        libx264-160=2:0.160.3011+gitcde9a93-2.1 \
+        libx265-192=3.4-2 \
+        libzvbi0=0.2.35-18 \
+        ocl-icd-libopencl1=2.2.14-2 && \
     rm -r /var/lib/apt/lists /var/cache/apt
 
 # App user
@@ -34,7 +34,7 @@ ARG FFMPEG_DIR="/usr/lib/jellyfin-ffmpeg/ffmpeg"
 ARG DATA_DIR="/var/lib/jellyfin"
 ARG CACHE_DIR="/var/cache/jellyfin"
 ARG CONF_DIR="/etc/jellyfin"
-ARG FFMPEG_URL="https://repo.jellyfin.org/releases/server/debian/ffmpeg/jellyfin-ffmpeg_4.3.2-1-buster_amd64.deb"
+ARG FFMPEG_URL="https://repo.jellyfin.org/releases/server/debian/ffmpeg/jellyfin-ffmpeg_4.3.2-1-bullseye_amd64.deb"
 ARG SERVER_URL="https://repo.jellyfin.org/releases/server/debian/stable/server/jellyfin-server_10.7.6-1_amd64.deb"
 ARG WEB_URL="https://repo.jellyfin.org/releases/server/debian/stable/web/jellyfin-web_10.7.6-1_all.deb"
 RUN apt update && \
