@@ -34,12 +34,16 @@ ARG FFMPEG_DIR="/usr/lib/jellyfin-ffmpeg/ffmpeg"
 ARG DATA_DIR="/var/lib/jellyfin"
 ARG CACHE_DIR="/var/cache/jellyfin"
 ARG CONF_DIR="/etc/jellyfin"
-ARG FFMPEG_URL="https://repo.jellyfin.org/releases/server/debian/ffmpeg/jellyfin-ffmpeg_4.4.1-1-bullseye_amd64.deb"
-ARG SERVER_URL="https://repo.jellyfin.org/releases/server/debian/stable/server/jellyfin-server_10.7.7-1_amd64.deb"
-ARG WEB_URL="https://repo.jellyfin.org/releases/server/debian/stable/web/jellyfin-web_10.7.7-1_all.deb"
+ARG FFMPEG_VERSION=4.4.1-1
+ARG SERVER_VERSION=10.7.7
+ARG WEB_VERSION=10.7.7
+ARG MIRROR="https://repo.jellyfin.org/releases/server/debian/versions"
 RUN apt update && \
     apt install --no-install-recommends --assume-yes wget && \
-    wget --quiet "$FFMPEG_URL" "$SERVER_URL" "$WEB_URL" && \
+    wget --quiet \
+        "$MIRROR/jellyfin-ffmpeg/$FFMPEG_VERSION/jellyfin-ffmpeg_$FFMPEG_VERSION-bullseye_amd64.deb" \
+        "$MIRROR/stable/server/$SERVER_VERSION/jellyfin-server_$SERVER_VERSION-1_amd64.deb" \
+        "$MIRROR/stable/web/$WEB_VERSION/jellyfin-web_$WEB_VERSION-1_all.deb" && \
     apt purge --assume-yes --auto-remove wget && \
     rm -r /var/lib/apt/lists /var/cache/apt && \
     dpkg --install jellyfin-*.deb && \

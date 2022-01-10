@@ -12,52 +12,6 @@ cd "$CWD"
 source libs/common.sh
 source libs/docker.sh
 
-update_custom() {
-	local ID="$1"
-	local NAME="$2"
-	local MAIN="$3"
-	local MIRROR="$4"
-	local URL_REGEX="$5"
-	local VERSION_REGEX="$6"
-
-	local CURRENT_URL=$(cat Dockerfile | grep --only-matching --perl-regexp "(?<=$ID=\").*(?=\")")
-	local NEW_URL=$(curl --silent --location "$MIRROR" | grep --only-matching --perl-regexp "(?<=href=(\"|'))$URL_REGEX(?=(\"|'))")
-	if [ -z "$CURRENT_URL" ] || [ -z "$NEW_URL" ]; then
-		echo -e "\e[31mFailed to scrape $NAME URL!\e[0m"
-		return
-	fi
-
-	# Convert to URI
-	if [ "${NEW_URL:0:4}" == "http" ]; then
-		# Already URI
-		true
-	elif [ "${NEW_URL:0:1}" == '/' ]; then
-		# Absolute path
-		ROOT=$(echo "$MIRROR" | grep --only-matching --perl-regexp "http(s)?:\/\/[^\/]+")
-		NEW_URL="${ROOT}$NEW_URL"
-	else
-		# Relative path
-		NEW_URL="$MIRROR/$NEW_URL"
-	fi
-
-	local CURRENT_VERSION=$(echo "$CURRENT_URL" | grep --only-matching --perl-regexp "$VERSION_REGEX")
-	local NEW_VERSION=$(echo "$NEW_URL" | grep --only-matching --perl-regexp "$VERSION_REGEX")
-	if [ -z "$CURRENT_VERSION" ] || [ -z "$NEW_VERSION" ]; then
-		echo -e "\e[31mFailed to scrape $NAME version!\e[0m"
-		return
-	fi
-
-	if [ "$CURRENT_URL" != "$NEW_URL" ]; then
-		prepare_update "$ID" "$NAME" "$CURRENT_VERSION" "$NEW_VERSION" "$CURRENT_URL" "$NEW_URL"
-
-		if [ "$MAIN" = "true" ] && [ "${CURRENT_VERSION%-*}" != "${NEW_VERSION%-*}" ]; then
-			update_version "$NEW_VERSION"
-		else
-			update_release
-		fi
-	fi
-}
-
 # Check dependencies
 assert_dependency "jq"
 assert_dependency "curl"
@@ -89,11 +43,10 @@ update_pkg "libzvbi0" "ZVBI libs" "false" "$PKG_URL" "(\d+\.)+\d+-\d+"
 update_pkg "ocl-icd-libopencl1" "OpenCL libs" "false" "$PKG_URL" "(\d+\.)+\d+-\d+"
 
 # Jellyfin
-IMG_CODENAME="bullseye"
-VERSION_REGEX="(\d+\.){2}\d+-\d+"
-update_custom "FFMPEG_URL" "Jellyfin FFmpeg" "false" "https://repo.jellyfin.org/releases/server/debian/ffmpeg" ".*jellyfin-ffmpeg_$VERSION_REGEX-${IMG_CODENAME}_amd64\.deb" "$VERSION_REGEX-$IMG_CODENAME"
-update_custom "SERVER_URL" "Jellyfin Server" "true" "https://repo.jellyfin.org/releases/server/debian/stable" ".*jellyfin-server_${VERSION_REGEX}_amd64\.deb" "$VERSION_REGEX"
-update_custom "WEB_URL" "Jellyfin Web" "false" "https://repo.jellyfin.org/releases/server/debian/stable" ".*jellyfin-web_${VERSION_REGEX}_all\.deb" "$VERSION_REGEX"
+VERSION_REGEX="(\d+\.){2}\d+"
+update_web "FFMPEG_VERSION" "Jellyfin FFmpeg" "false" "https://repo.jellyfin.org/releases/server/debian/versions/jellyfin-ffmpeg/" "$VERSION_REGEX-\d+"
+update_web "SERVER_VERSION" "Jellyfin Server" "true" "https://repo.jellyfin.org/releases/server/debian/versions/stable/server" "$VERSION_REGEX"
+update_web "WEB_VERSION" "Jellyfin Web" "false" "https://repo.jellyfin.org/releases/server/debian/versions/stable/web" "$VERSION_REGEX"
 
 if ! updates_available; then
 	#echo "No updates available."
