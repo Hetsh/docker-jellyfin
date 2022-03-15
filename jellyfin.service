@@ -19,6 +19,8 @@ ExecStartPre=-/bin/docker create \
               hetsh/jellyfin
 ExecStart=/bin/docker start --attach jellyfin
 ExecStop=/bin/docker stop jellyfin
+# Workaround for https://github.com/jellyfin/jellyfin/issues/3182
+SuccessExitStatus=143
 
 [Install]
 WantedBy=multi-user.target
