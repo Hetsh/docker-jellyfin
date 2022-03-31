@@ -1,11 +1,11 @@
-FROM amd64/debian:stable-20220316-slim
+FROM amd64/debian:stable-20220328-slim
 ARG DEBIAN_FRONTEND="noninteractive"
 RUN apt update && \
     apt install --no-install-recommends --assume-yes \
         ca-certificates=20210119 \
         at=3.1.23-1.1 \
         libsqlite3-0=3.34.1-3 \
-        libssl1.1=1.1.1k-1+deb11u1 \
+        libssl1.1=1.1.1n-0+deb11u1 \
         libass9=1:0.15.0-2 \
         libbluray2=1:1.2.1-4+deb11u1 \
         libdrm-intel1=2.4.104-1 \
