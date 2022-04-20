@@ -1,4 +1,4 @@
-FROM amd64/debian:stable-20220328-slim
+FROM amd64/debian:stable-20220418-slim
 ARG DEBIAN_FRONTEND="noninteractive"
 RUN apt update && \
     apt install --no-install-recommends --assume-yes \
