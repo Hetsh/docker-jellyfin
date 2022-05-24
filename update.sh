@@ -41,6 +41,16 @@ update_pkg "libx264-160" "x264 libs" "false" "$PKG_URL" "\d+:(\d+\.)+\d+\+git[a-
 update_pkg "libx265-192" "x265 libs" "false" "$PKG_URL" "\d+\.\d+-\d+"
 update_pkg "libzvbi0" "ZVBI libs" "false" "$PKG_URL" "(\d+\.)+\d+-\d+"
 update_pkg "ocl-icd-libopencl1" "OpenCL libs" "false" "$PKG_URL" "(\d+\.)+\d+-\d+"
+update_pkg "libelf1" "ELF libs" "false" "$PKG_URL" "(\d+\.)+\d+-\d+"
+update_pkg "libllvm11" "LLVM 11 libs" "false" "$PKG_URL" "\d+:(\d+\.)+\d+-\d+"
+update_pkg "libx11-xcb1" "X/XCB libs" "false" "$PKG_URL" "\d+:(\d+\.)+\d+-\d+"
+update_pkg "libxcb-dri2-0" "XCB/DRI2 libs" "false" "$PKG_URL" "(\d+\.)+\d+-\d+"
+update_pkg "libxcb-dri3-0" "XCB/DRI3 libs" "false" "$PKG_URL" "(\d+\.)+\d+-\d+"
+update_pkg "libxcb-present0" "XCB/Present libs" "false" "$PKG_URL" "(\d+\.)+\d+-\d+"
+update_pkg "libxcb-randr0" "XCB/RandR libs" "false" "$PKG_URL" "(\d+\.)+\d+-\d+"
+update_pkg "libxcb-sync1" "XCB/Sync libs" "false" "$PKG_URL" "(\d+\.)+\d+-\d+"
+update_pkg "libxcb-xfixes0" "XCB/XFiles libs" "false" "$PKG_URL" "(\d+\.)+\d+-\d+"
+update_pkg "libxshmfence1" "Share-Memory-Fence libs" "false" "$PKG_URL" "(\d+\.)+\d+-\d+"
 
 # Jellyfin
 VERSION_REGEX="(\d+\.){2}\d+"

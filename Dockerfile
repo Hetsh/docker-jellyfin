@@ -20,7 +20,17 @@ RUN apt update && \
         libx264-160=2:0.160.3011+gitcde9a93-2.1 \
         libx265-192=3.4-2 \
         libzvbi0=0.2.35-18 \
-        ocl-icd-libopencl1=2.2.14-2 && \
+        ocl-icd-libopencl1=2.2.14-2 \
+        libelf1=0.183-1 \
+        libllvm11=1:11.0.1-2 \
+        libx11-xcb1=2:1.7.2-1 \
+        libxcb-dri2-0=1.14-3 \
+        libxcb-dri3-0=1.14-3 \
+        libxcb-present0=1.14-3 \
+        libxcb-randr0=1.14-3 \
+        libxcb-sync1=1.14-3 \
+        libxcb-xfixes0=1.14-3 \
+        libxshmfence1=1.3-1 && \
     rm -r /var/lib/apt/lists /var/cache/apt
 
 # App user
