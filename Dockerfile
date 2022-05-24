@@ -41,7 +41,7 @@ ARG MIRROR="https://repo.jellyfin.org/releases/server/debian/versions"
 RUN apt update && \
     apt install --no-install-recommends --assume-yes wget && \
     wget --quiet \
-        "$MIRROR/jellyfin-ffmpeg/$FFMPEG_VERSION/jellyfin-ffmpeg_$FFMPEG_VERSION-bullseye_amd64.deb" \
+        "$MIRROR/jellyfin-ffmpeg/$FFMPEG_VERSION/jellyfin-ffmpeg${FFMPEG_VERSION%%.*}_$FFMPEG_VERSION-bullseye_amd64.deb" \
         "$MIRROR/stable/server/$SERVER_VERSION/jellyfin-server_$SERVER_VERSION-1_amd64.deb" \
         "$MIRROR/stable/web/$WEB_VERSION/jellyfin-web_$WEB_VERSION-1_all.deb" && \
     apt purge --assume-yes --auto-remove wget && \
