@@ -44,8 +44,8 @@ ARG DATA_DIR="/var/lib/jellyfin"
 ARG CACHE_DIR="/var/cache/jellyfin"
 ARG CONF_DIR="/etc/jellyfin"
 ARG FFMPEG_VERSION=5.0.1-7
-ARG SERVER_VERSION=10.8.0
-ARG WEB_VERSION=10.8.0
+ARG SERVER_VERSION=10.8.1
+ARG WEB_VERSION=10.8.1
 ARG MIRROR="https://repo.jellyfin.org/releases/server/debian/versions"
 RUN apt update && \
     apt install --no-install-recommends --assume-yes wget && \
