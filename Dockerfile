@@ -21,7 +21,7 @@ RUN apt update && \
         libzvbi0=0.2.35-18 \
         ocl-icd-libopencl1=2.2.14-2 \
         libelf1=0.183-1 \
-        libllvm11=1:11.0.1-2 \
+        libllvm13=1:13.0.1-6~deb11u1 \
         libx11-xcb1=2:1.7.2-1 \
         libxcb-dri2-0=1.14-3 \
         libxcb-dri3-0=1.14-3 \
