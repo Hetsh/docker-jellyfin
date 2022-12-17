@@ -6,7 +6,7 @@ RUN apt update && \
         at=3.1.23-1.1 \
         libsqlite3-0=3.34.1-3 \
         libass9=1:0.15.0-2 \
-        libbluray2=1:1.2.1-4+deb11u1 \
+        libbluray2=1:1.2.1-4+deb11u2 \
         libdrm-intel1=2.4.104-1 \
         libdrm2=2.4.104-1 \
         libmp3lame0=3.100-3 \
