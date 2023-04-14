@@ -10,6 +10,7 @@ RUN apt update && \
         libdrm-intel1=2.4.104-1 \
         libdrm2=2.4.104-1 \
         libmp3lame0=3.100-3 \
+        libopenmpt0=0.4.11-1 \
         libopus0=1.3.1-0.1 \
         libtheora0=1.1.1+dfsg.1-15 \
         libvdpau1=1.4-3 \
